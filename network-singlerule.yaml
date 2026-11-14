@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: andconditionpolicy
+  namespace: newcode
+spec:
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            team: devopssec
+        podSelector:
+          matchLabels:
+            name: tests
+  policyTypes:
+    - Ingress
+  podSelector:

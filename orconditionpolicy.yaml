@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: orconditionpolicy
+  namespace: newcode
+spec:
+  ingress:
+    - from: 
+        - namespaceSelector:
+            matchLabels:
+              team: devops
+        - podSelector:
+            matchLabels:
+              name: network
+    - ports:
+      - port: 8080
+        protocol: TCP         
+  policytypes:
+    - Ingress
+  podSelector:
